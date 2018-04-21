@@ -1,5 +1,5 @@
 import random
-import os, sys, json
+import os, sys, json, datetime
 from flask import Flask, request
 from pymessenger.bot import Bot
 
@@ -20,7 +20,6 @@ def receive_message():
     # getting message from user
        output = request.get_json()
        log(output)
-       print(output)
        for event in output['entry']:
           messaging = event['messaging']
           for message in messaging:
