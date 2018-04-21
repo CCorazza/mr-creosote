@@ -19,6 +19,7 @@ def receive_message():
     else:
     # getting message from user
        output = request.get_json()
+       log(output)
        for event in output['entry']:
           messaging = event['messaging']
           for message in messaging:
@@ -50,6 +51,17 @@ def create_answer():
 def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
     return "success"
+
+def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
+    try:
+        if type(msg) is dict:
+            msg = json.dumps(msg)
+        else:
+            msg = unicode(msg).format(*args, **kwargs)
+        print u"{}: {}".format(datetime.now(), msg)
+    except UnicodeEncodeError:
+        pass  # squash logging errors in case of non-ascii text
+sys.stdout.flush()
 
 if __name__ == "__main__":
     app.run()
