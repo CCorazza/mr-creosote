@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pymessenger = "*"
 flask = "*"
+gunicorn = "*"
 
 [dev-packages]
 
