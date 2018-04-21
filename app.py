@@ -20,6 +20,7 @@ def receive_message():
     # getting message from user
        output = request.get_json()
        log(output)
+       print(output)
        for event in output['entry']:
           messaging = event['messaging']
           for message in messaging:
